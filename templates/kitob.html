@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitob</title>
+</head>
+<body>
+<h1>Kitob</h1>
+<ol>
+    {% for kitob in kitoblar %}
+       <li><a href="/kitob/{{kitob.id}}/">{{ kitob.nom }}</a></li>
+    {% endfor %}
+</ol>
+<hr>
+<hr>
+<h1>Sahifalar</h1>
+<ol>
+    {% for sahifa in sahifalar %}
+        <li>{{sahifa.nom}} - {{sahifa.sahifa}}</li>
+    {% endfor %}
+</ol>
+<hr>
+<hr>
+
+<h1>Badiiy kitoblar</h1>
+<ol>
+    {% for badiiy in badiiylar %}
+    <li>{{badiiy.nom}} - {{badiiy.janr}}</li>
+    {% endfor %}
+</ol>
+
+</body>
+</html>

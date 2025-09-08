@@ -32,7 +32,7 @@ class Kitob(models.Model):
     nom = models.CharField(max_length=255)
     janr = models.CharField(max_length=255)
     sahifa = models.PositiveIntegerField()
-    mualliy = models.ForeignKey(Muallif, on_delete = models.SET_NULL, null=True)
+    muallif = models.ForeignKey(Muallif, on_delete = models.CASCADE,)
 
     def __str__(self):
         return self.nom
@@ -53,9 +53,9 @@ class Admin(models.Model):
         verbose_name_plural = 'Adminlar'
 
 class Record(models.Model):
-    talaba = models.ForeignKey(Talaba, on_delete=models.SET_NULL,null=True)
-    kitob = models.ForeignKey(Kitob, on_delete=models.SET_NULL,null=True)
-    admin = models.ForeignKey(Admin, on_delete=models.SET_NULL,null=True)
+    talaba = models.ForeignKey(Talaba, on_delete=models.CASCADE,)
+    kitob = models.ForeignKey(Kitob, on_delete=models.CASCADE,)
+    admin = models.ForeignKey(Admin, on_delete=models.CASCADE,)
     olingan_sana = models.DateTimeField()
     qaytatrish_sanasi = models.DateField()
 

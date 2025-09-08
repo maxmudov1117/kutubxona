@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record</title>
+</head>
+<body>
+<h1>Recordlar</h1>
+<ol>
+  {% for record in recordlar %}
+    <li><a href="/order/{{record.id}}/">{{ record.talaba }} - {{record.admin}} - {{record.kitob}}</a></li>
+  {% endfor %}
+</ol>
+<hr>
+<hr>
+<h1>Recordlar olingan sana </h1>
+<ol>
+    {% for sana in record_sana %}
+    <li>{{sana.talaba}} - {{sana.kitob}} - {{sana.admin}}</li>
+    {% endfor %}
+</ol>
+
+<hr>
+<hr>
+<ol>
+    {% for student in bitiruvchilar %}
+    <li>{{student.talaba.ism}}
+        Guruh: {{student.talaba.guruh}}
+        Kurs: {{student.talaba.kurs}}
+        Kitob_soni: {{student.talaba.kitob_soni}} </li>
+    {% endfor %}
+</ol>
+</body>
+</html>

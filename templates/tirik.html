@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tirik</title>
+</head>
+<body>
+<h1>Tiriklar ro'yxati</h1>
+<hr>
+<ol>
+  {% for tirik in tiriklar %}
+  <li>{{tirik.ism}}</li>
+  {% endfor %}
+</ol>
+<hr>
+<hr>
+<h1>Tirik mualliflarning kitoblari</h1>
+<ol>
+    {% for tirik_kitob in tirik_kitoblar %}
+    <li>{{tirik_kitob.nom}} - {{tirik_kitob.muallif.ism}}</li>
+    {% endfor %}
+</ol>
+</body>
+</html>

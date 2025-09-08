@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mualliflar</title>
+</head>
+<body>
+<h1>Mualliflar</h1>
+  <ol>
+    {% for muallif in mualliflar %}
+      <li><a href="/muallif/{{muallif.id}}/">{{ muallif.ism }}</a></li>
+    {% endfor %}
+  </ol>
+  <hr>
+  <hr>
+<h1>Eng ko'p kitobi borlar</h1>
+<ol>
+    {% for eng in eng_katta %}
+    <li>{{eng.ism}} - {{eng.kitob_soni}}</li>
+    {% endfor %}
+</ol>
+
+<hr>
+<hr>
+<h1>Eng yoshi katta mualliflar</h1>
+<ol>
+    {% for katta in katta_yosh %}
+    <li>{{katta.ism}} - {{katta.tugilgan_sana}}</li>
+    {% endfor %}
+</ol>
+<hr>
+<hr>
+<h1>kitobi 10 tadan kam mualliflar</h1>
+<ol>
+    {% for kitob in eng_kop_kitob %}
+    <li>{{kitob.ism}} - {{kitob.kitob_soni}}</li>
+    {% endfor %}
+</ol>
+</body>
+</html>
