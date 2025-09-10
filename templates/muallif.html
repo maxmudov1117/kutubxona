@@ -6,9 +6,17 @@
 </head>
 <body>
 <h1>Mualliflar</h1>
+<hr>
+<form>
+    <input type="text" name="search" placeholder="Ism bo'yicha qidirish .." {% if search %} value="{{search}}" {% endif %}>
+    <button>Search</button>
+</form>
+<hr>
   <ol>
     {% for muallif in mualliflar %}
-      <li><a href="/muallif/{{muallif.id}}/">{{ muallif.ism }}</a></li>
+      <li><a href="/muallif/{{muallif.id}}/">{{ muallif.ism }}</a>
+          <a href="/muallif/{{muallif.id}}/delete/confirm/"><button>Delete</button></a>
+      </li>
     {% endfor %}
   </ol>
   <hr>
@@ -25,7 +33,7 @@
 <h1>Eng yoshi katta mualliflar</h1>
 <ol>
     {% for katta in katta_yosh %}
-    <li>{{katta.ism}} - {{katta.tugilgan_sana}}</li>
+    <li>{{katta.ism}} - {{katta.tugilgan_sana}} </li>
     {% endfor %}
 </ol>
 <hr>

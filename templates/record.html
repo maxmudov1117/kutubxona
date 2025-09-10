@@ -6,9 +6,20 @@
 </head>
 <body>
 <h1>Recordlar</h1>
+<hr>
+<form>
+    <input type="text" name="search" placeholder="Ism bo'yicha qidiring ..." {% if search %} value="{{search}}" {% endif %}>
+    <button>Search</button>
+</form>
+<hr>
+
 <ol>
   {% for record in recordlar %}
-    <li><a href="/order/{{record.id}}/">{{ record.talaba }} - {{record.admin}} - {{record.kitob}}</a></li>
+    <li><a href="/order/{{record.id}}/">{{ record.talaba }} - {{record.admin}} - {{record.kitob}}</a>
+        <a href="/record/{{record.id}}/delete/confirm">
+            <button>Delete</button>
+        </a>
+    </li>
   {% endfor %}
 </ol>
 <hr>
