@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Talabalar</title>
 </head>
 <body>
-$END$
+<h1>Talabalar</h1>
+<hr>
+<form >
+    <select name="ordering" id="ordering">
+        <option value="">Old</option>
+        <option value="ism">ism(a-z)</option>
+        <option value="-ism">ism(z-a)</option>
+    </select>
+    <button>Go</button>
+
+    <select name="kurs" id="kurs">
+        <option value="">Barchasi</option>
+        <option value="1">1-kurs</option>
+        <option value="2">2-kurs</option>
+        <option value="3">3-kurs</option>
+        <option value="4">4-kurs</option>
+    </select>
+    <button>Filter</button>
+</form>
+<ol>
+    {% for talaba in talabalar %}
+    <li>{{talaba.ism}}</li>
+    {% endfor %}
+</ol>
 </body>
 </html>

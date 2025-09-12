@@ -6,6 +6,22 @@
 </head>
 <body>
 <h1>Kitob</h1>
+<hr>
+<form>
+    <select name="ordering">
+        <option value="">Barchasi</option>
+        <option value="nom">Nom(a-z)</option>
+        <option value="-nom">Nom(z-a)</option>
+    </select>
+    <button>Go</button>
+    <select name="sahifa">
+        <option value="">Barchasi</option>
+        <option value="sahifa">ASC</option>
+        <option value="-sahifa">DESC</option>
+    </select>
+    <button>Go &gt;</button>
+</form>
+<hr>
 <ol>
     {% for kitob in kitoblar %}
        <li><a href="/kitob/{{kitob.id}}/">{{ kitob.nom }}</a></li>

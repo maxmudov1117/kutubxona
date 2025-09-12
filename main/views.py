@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
 
+
 def home_view(request):
     return HttpResponse("""
     <h1>Salom hammaga</h1>
@@ -62,10 +63,20 @@ def kitob_view(request):
     kitoblar = Kitob.objects.all()
     sahifalar = Kitob.objects.order_by ("-sahifa")[:3]
     badiiylar = Kitob.objects.filter(janr="badiiy")
+
+    ordering = request.GET.get('ordering')
+    if ordering:
+        kitoblar = kitoblar.order_by(ordering)
+
+    sahifa = request.GET.get('sahifa')
+    if sahifa:
+        kitoblar = kitoblar.order_by(sahifa)
     context = {
         'kitoblar':kitoblar,
         'sahifalar': sahifalar,
-        'badiiylar': badiiylar
+        'badiiylar': badiiylar,
+        'ordering': ordering,
+        'sahifa':sahifa,
     }
     return render(request,"kitob.html", context=context)
 
@@ -114,4 +125,22 @@ def tirik_view(request):
         'tirik_kitoblar' : tirik_kitoblar,
     }
     return render(request,"tirik.html", context=context)
+
+def talaba_view(request):
+    talabalar = Talaba.objects.all()
+    ordering = request.GET.get('ordering')
+    if ordering:
+        talabalar = talabalar.order_by(ordering)
+
+    kurs = request.GET.get('kurs')
+    if kurs:
+        talabalar = talabalar.filter(kurs=kurs)
+
+    context = {
+        'talabalar': talabalar,
+        'ordering':ordering,
+        'kurs':kurs
+    }
+    return render(request, "talaba.html", context=context)
+
 
