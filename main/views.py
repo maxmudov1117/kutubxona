@@ -13,6 +13,17 @@ def home_page(request):
     return render(request,'home.html')
 
 def muallif_list(request):
+
+    if request.method == "POST":
+        Muallif.objects.create(
+            ism = request.POST.get('ism'),
+            jins = request.POST.get('jins'),
+            tugilgan_sana = request.POST.get('tugilgan_sana'),
+            tirik = request.POST.get('tirik') if request.POST.get('tirik') else 0,
+            kitob_soni=request.POST.get('kitob_soni') if request.POST.get('kitob_soni') else 0
+        )
+        return redirect('/muallif/')
+
     mualliflar = Muallif.objects.all()
     eng_katta = Muallif.objects.order_by("-kitob_soni")[:3]
     katta_yosh = Muallif.objects.order_by("tugilgan_sana")[:3]
@@ -60,7 +71,18 @@ def tanlangan_record_view(request, record_id):
     return render(request, "tanlangan.html", context)
 
 def kitob_view(request):
+    if request.method == 'POST':
+        muallif = get_object_or_404(Muallif, id=request.POST.get('muallif_id'))
+        Kitob.objects.create(
+            nom=request.POST.get('nom'),
+            janr=request.POST.get('janr'),
+            sahifa=request.POST.get('sahifa'),
+            muallif= muallif,
+        )
+        return redirect('/kitob/')
+
     kitoblar = Kitob.objects.all()
+    authors = Muallif.objects.all()
     sahifalar = Kitob.objects.order_by ("-sahifa")[:3]
     badiiylar = Kitob.objects.filter(janr="badiiy")
 
@@ -77,6 +99,7 @@ def kitob_view(request):
         'badiiylar': badiiylar,
         'ordering': ordering,
         'sahifa':sahifa,
+        'authors':authors,
     }
     return render(request,"kitob.html", context=context)
 
@@ -88,7 +111,20 @@ def tanlangan_kitob_view(request, kitob_id):
     return render(request,"tanlangan-kitob.html", context=context)
 
 def record_view(request):
+
+    if request.method == 'POST':
+        Record.objects.create(
+            talaba = get_object_or_404(Talaba, id=request.POST.get('talaba_id')),
+            kitob = get_object_or_404(Kitob, id=request.POST.get('kitob_id')),
+            admin = get_object_or_404(Admin, id=request.POST.get('admin_id')),
+            olingan_sana = request.POST.get('olingan_sana'),
+            qaytatrish_sanasi = request.POST.get('qaytatrish_sanasi'),
+        )
+        redirect('/recosd/')
     recordlar = Record.objects.all()
+    talabalar = Talaba.objects.all()
+    kitoblar = Kitob.objects.all()
+    adminlar = Admin.objects.all()
     record_sana = Record.objects.order_by("-olingan_sana")[:3]
     bitiruvchilar = Record.objects.filter(talaba__kurs=4)
     search = request.GET.get('search')
@@ -101,6 +137,9 @@ def record_view(request):
         'record_sana':record_sana,
         'bitiruvchilar' : bitiruvchilar,
         'search':search,
+        'talabalar':talabalar,
+        'kitoblar':kitoblar,
+        'adminlar':adminlar,
     }
     return render(request,"record.html", context = context)
 
@@ -127,6 +166,15 @@ def tirik_view(request):
     return render(request,"tirik.html", context=context)
 
 def talaba_view(request):
+
+    if request.method == 'POST':
+        Talaba.objects.create(
+            ism=request.POST.get('ism'),
+            guruh = request.POST.get('guruh'),
+            kurs = request.POST.get('kurs'),
+            kitob_soni = request.POST.get('kitob_soni') if request.POST.get('kitob_soni') else 0
+        )
+        return redirect('/talaba/')
     talabalar = Talaba.objects.all()
     ordering = request.GET.get('ordering')
     if ordering:
@@ -142,5 +190,18 @@ def talaba_view(request):
         'kurs':kurs
     }
     return render(request, "talaba.html", context=context)
+
+def admin_view(request):
+    if request.method =='POST':
+        Admin.objects.create(
+            ism = request.POST.get('ism'),
+            ish_vaqti = request.POST.get('ish_vaqti'),
+        )
+        return redirect('/admin_view/')
+    adminlar = Admin.objects.all()
+    context = {
+        'adminlar':adminlar,
+    }
+    return render(request, 'admin_view.html', context=context)
 
 

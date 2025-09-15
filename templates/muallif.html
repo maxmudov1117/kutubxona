@@ -20,6 +20,26 @@
     {% endfor %}
   </ol>
   <hr>
+<form method="post" >
+    {% csrf_token %}
+    <h1>Ynagi muallif qo'shish </h1>
+    <label for="name">Ism:</label>
+    <input type="text" name = 'ism' id="name" required>
+    <br><br>
+    <label for="gender">Jins:</label>
+    <input type="text" name = 'jins' id="gender" required>
+    <br><br>
+    <label for="t_sana">Tug'ilgan sana:</label>
+    <input type="date" name = 'tugilgan_sana' id="t_sana" required>
+    <br><br>
+    <label for="k_soni">Kitoblar soni:</label>
+    <input type="number" name = 'kitob_soni' id="k_soni" value="0">
+    <br><br>
+    <label for="tirik">Tirik:</label>
+    <input type="checkbox" name = 'tirik' id="tirik" value="0">
+    <br><br>
+    <button>Qo'shish</button>
+</form>
   <hr>
 <h1>Eng ko'p kitobi borlar</h1>
 <ol>

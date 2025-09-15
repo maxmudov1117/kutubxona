@@ -28,6 +28,27 @@
     {% endfor %}
 </ol>
 <hr>
+<form method="post">
+    {% csrf_token %}
+    <label for="nom">Nom:</label>
+    <input type="text" name="nom" id="nom" required>
+    <br><br>
+    <label for="janr">Janr:</label>
+    <input type="text" name="janr" id="janr" required>
+    <br><br>
+    <label for="sahifa">Sahifa:</label>
+    <input type="number" name="sahifa" id="sahifa" value="1">
+    <br><br>
+    <label for="author">Muallif:</label>
+    <select name="muallif_id" id="author">
+        {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.ism }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <button>Qo'shish</button>
+</form>
+<hr>
 <hr>
 <h1>Sahifalar</h1>
 <ol>

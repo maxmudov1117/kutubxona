@@ -29,5 +29,23 @@
     <li>{{talaba.ism}}</li>
     {% endfor %}
 </ol>
+<br>
+<form method="post" >
+    {% csrf_token %}
+    <h3>Yangi talaba qo'shish</h3>
+    <label for="name">Ism:</label>
+    <input type="text" name="ism" id="name">
+<br><br>
+    <label for="group">Guruh:</label>
+    <input type="text" name="guruh" id="group">
+<br><br>
+    <label for="course">Kurs:</label>
+    <input type="number" name="kurs" id="course">
+<br><br>
+    <label for="books">Kitoblar soni:</label>
+    <input type="number" name="kitob_sone" id="books">
+<br><br>
+    <button>Qo'shish</button>
+</form>
 </body>
 </html>

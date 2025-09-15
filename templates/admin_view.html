@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adminlar</title>
+</head>
+<body>
+<h1>Adminlar ro'yxati </h1>
+<hr>
+<ol>
+    {% for admin in adminlar %}
+    <li>{{admin.ism}}</li>
+    {% endfor %}
+</ol>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    <label for="name">Ism:</label>
+    <input type="text" name="ism" id="name" required>
+    <br><br>
+    <label for="sana">Ish vaqti:</label>
+    <select name="ish_vaqti" id="sana">
+        <option value="">from 8:00 to 12:30</option>
+        <option value="">from 13:00 to 15:30</option>
+        <option value="">from 10:00 to 15:30</option>
+    </select>
+    <br><br>
+    <button>Qo'shish</button>
+</form>
+<hr>
+</body>
+</html>

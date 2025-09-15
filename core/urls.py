@@ -19,5 +19,6 @@ urlpatterns = [
     path("record/<int:pk>/delete/", record_delete_view),
     path("tirik/", tirik_view),
     path("order/<int:record_id>/",tanlangan_record_view, name="tanlangan_record_view"),
-    path('talaba/', talaba_view)
+    path('talaba/', talaba_view),
+    path('admin_view/', admin_view)
 ]
