@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+
 class Talaba(models.Model):
     ism = models.CharField(max_length=255)
     guruh = models.CharField(max_length=255)
@@ -14,9 +15,10 @@ class Talaba(models.Model):
         verbose_name = 'Talaba'
         verbose_name_plural = 'Talabalar'
 
+
 class Muallif(models.Model):
     ism = models.CharField(max_length=255)
-    jins = models.CharField(max_length=255, choices=(('erkak','erkak'),('ayol','ayol')))
+    jins = models.CharField(max_length=255, choices=(('erkak', 'erkak'), ('ayol', 'ayol')))
     tugilgan_sana = models.DateTimeField()
     kitob_soni = models.PositiveIntegerField()
     tirik = models.BooleanField(default=True)
@@ -28,11 +30,12 @@ class Muallif(models.Model):
         verbose_name = 'Muallif'
         verbose_name_plural = 'Mualliflar'
 
+
 class Kitob(models.Model):
     nom = models.CharField(max_length=255)
     janr = models.CharField(max_length=255)
     sahifa = models.PositiveIntegerField()
-    muallif = models.ForeignKey(Muallif, on_delete = models.CASCADE,)
+    muallif = models.ForeignKey(Muallif, on_delete=models.CASCADE, )
 
     def __str__(self):
         return self.nom
@@ -40,6 +43,7 @@ class Kitob(models.Model):
     class Meta:
         verbose_name = 'Kitob'
         verbose_name_plural = 'Kitoblar'
+
 
 class Admin(models.Model):
     ism = models.CharField(max_length=255)
@@ -52,16 +56,13 @@ class Admin(models.Model):
         verbose_name = 'Admin'
         verbose_name_plural = 'Adminlar'
 
+
 class Record(models.Model):
-    talaba = models.ForeignKey(Talaba, on_delete=models.CASCADE,)
-    kitob = models.ForeignKey(Kitob, on_delete=models.CASCADE,)
-    admin = models.ForeignKey(Admin, on_delete=models.CASCADE,)
+    talaba = models.ForeignKey(Talaba, on_delete=models.CASCADE, )
+    kitob = models.ForeignKey(Kitob, on_delete=models.CASCADE, )
+    admin = models.ForeignKey(Admin, on_delete=models.CASCADE, )
     olingan_sana = models.DateTimeField()
     qaytatrish_sanasi = models.DateField()
 
     def __str__(self):
         return f"{self.talaba} - {self.kitob} - {self.admin}"
-
-
-
-

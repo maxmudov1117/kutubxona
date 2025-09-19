@@ -26,25 +26,21 @@
 </form>
 <ol>
     {% for talaba in talabalar %}
-    <li>{{talaba.ism}}</li>
+    <li>
+        <a href="/talaba/{{talaba.id}}/">{{talaba.ism}}</a>
+        <a href="/talaba/{{talaba.id}}/update/">
+            <button>Update</button>
+        </a>
+        <a href="/talaba/{{talaba.id}}/delete/confirm/">
+            <button>Delete</button>
+        </a>
+    </li>
     {% endfor %}
 </ol>
 <br>
 <form method="post" >
     {% csrf_token %}
-    <h3>Yangi talaba qo'shish</h3>
-    <label for="name">Ism:</label>
-    <input type="text" name="ism" id="name">
-<br><br>
-    <label for="group">Guruh:</label>
-    <input type="text" name="guruh" id="group">
-<br><br>
-    <label for="course">Kurs:</label>
-    <input type="number" name="kurs" id="course">
-<br><br>
-    <label for="books">Kitoblar soni:</label>
-    <input type="number" name="kitob_sone" id="books">
-<br><br>
+    {{ form.as_p }}
     <button>Qo'shish</button>
 </form>
 </body>

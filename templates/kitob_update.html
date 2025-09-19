@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitob | Update</title>
+</head>
+<body>
+<h1>{{kitob.nom}}ni ma'lumotlarini yangilash</h1>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Save</button>
+</form>
+</body>
+</html>

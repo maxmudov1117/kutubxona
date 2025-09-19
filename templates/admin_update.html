@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin | Update</title>
+</head>
+<body>
+<h1>{{admin.ism}}ning ma'lumotlarini yangilash</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Save</button>
+</form>
+</body>
+</html>

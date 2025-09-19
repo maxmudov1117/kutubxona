@@ -9,22 +9,21 @@
 <hr>
 <ol>
     {% for admin in adminlar %}
-    <li>{{admin.ism}}</li>
+    <li>
+        <a href="/admin_view/{{admin.id}}/">{{admin.ism}}</a>
+        <a href="/admin_view/{{admin.id}}/delete/confirm">
+            <button>Delete</button>
+        </a>
+        <a href="/admin_view/{{admin.id}}/update">
+            <button>Update</button>
+        </a>
+    </li>
     {% endfor %}
 </ol>
 <hr>
 <form method="post">
     {% csrf_token %}
-    <label for="name">Ism:</label>
-    <input type="text" name="ism" id="name" required>
-    <br><br>
-    <label for="sana">Ish vaqti:</label>
-    <select name="ish_vaqti" id="sana">
-        <option value="">from 8:00 to 12:30</option>
-        <option value="">from 13:00 to 15:30</option>
-        <option value="">from 10:00 to 15:30</option>
-    </select>
-    <br><br>
+    {{ form.as_p }}
     <button>Qo'shish</button>
 </form>
 <hr>

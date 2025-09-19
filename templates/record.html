@@ -8,51 +8,28 @@
 <h1>Recordlar</h1>
 <hr>
 <form>
-    <input type="text" name="search" placeholder="Ism bo'yicha qidiring ..." {% if search %} value="{{search}}" {% endif %}>
+    <input type="text" name="search" {% if search %} value="{{search}}" {% endif %}>
     <button>Search</button>
 </form>
 <hr>
 
 <ol>
-  {% for record in recordlar %}
-    <li><a href="/order/{{record.id}}/">{{ record.talaba }} - {{record.admin}} - {{record.kitob}}</a>
+    {% for record in recordlar %}
+    <li><a href="/record/{{record.id}}/">{{ record.talaba }} - {{record.admin}} - {{record.kitob}}</a>
         <a href="/record/{{record.id}}/delete/confirm">
             <button>Delete</button>
         </a>
+        <a href="/record/{{record.id}}/update">
+            <button>Update</button>
+        </a>
     </li>
-  {% endfor %}
+    {% endfor %}
 </ol>
 <hr>
 <form method="post">
     <h1>Recordlar qo'shish</h1>
     {% csrf_token %}
-    <label for="talaba">Talaba:</label>
-    <select name="talaba_id" id="talaba">
-        {% for talaba in talabalar %}
-            <option value="{{ talaba.id }}">{{ talaba.ism }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <label for="kitob">Kitob:</label>
-    <select name="kitob_id" id="kitob">
-        {% for kitob in kitoblar %}
-            <option value="{{ kitob.id }}">{{ kitob.nom }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <label for="admin">Adminlar:</label>
-   <select name="admin_id" id="admin">
-        {% for admin in adminlar %}
-            <option value="{{ admin.id }}">{{ admin.ism }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <label for="ol_sana">Olingan sana:</label>
-    <input type="date" name="olingan_sana" id="ol_sana">
-    <br><br>
-    <label for="q_sana">Qaytarish sana:</label>
-    <input type="date" name="qaytatrish_sanasi" id="q_sana">
-    <br><br>
+    {{ form.as_p }}
     <button>Qo'shish</button>
 </form>
 <hr>
@@ -70,7 +47,8 @@
     <li>{{student.talaba.ism}}
         Guruh: {{student.talaba.guruh}}
         Kurs: {{student.talaba.kurs}}
-        Kitob_soni: {{student.talaba.kitob_soni}} </li>
+        Kitob_soni: {{student.talaba.kitob_soni}}
+    </li>
     {% endfor %}
 </ol>
 </body>

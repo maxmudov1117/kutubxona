@@ -24,28 +24,22 @@
 <hr>
 <ol>
     {% for kitob in kitoblar %}
-       <li><a href="/kitob/{{kitob.id}}/">{{ kitob.nom }}</a></li>
+    <li><a href="/kitob/{{kitob.id}}/">{{ kitob.nom }}</a>
+        <a href="/kitob/{{kitob.id}}/delete/confirm">
+            <button>Delete</button>
+        </a>
+        <a href="/kitob/{{kitob.id}}/update">
+            <button>Update</button>
+        </a>
+
+    </li>
+
     {% endfor %}
 </ol>
 <hr>
 <form method="post">
     {% csrf_token %}
-    <label for="nom">Nom:</label>
-    <input type="text" name="nom" id="nom" required>
-    <br><br>
-    <label for="janr">Janr:</label>
-    <input type="text" name="janr" id="janr" required>
-    <br><br>
-    <label for="sahifa">Sahifa:</label>
-    <input type="number" name="sahifa" id="sahifa" value="1">
-    <br><br>
-    <label for="author">Muallif:</label>
-    <select name="muallif_id" id="author">
-        {% for author in authors %}
-            <option value="{{ author.id }}">{{ author.ism }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
+    {{form.as_p}}
     <button>Qo'shish</button>
 </form>
 <hr>
@@ -53,7 +47,7 @@
 <h1>Sahifalar</h1>
 <ol>
     {% for sahifa in sahifalar %}
-        <li>{{sahifa.nom}} - {{sahifa.sahifa}}</li>
+    <li>{{sahifa.nom}} - {{sahifa.sahifa}}</li>
     {% endfor %}
 </ol>
 <hr>

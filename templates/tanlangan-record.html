@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tanlangan orderlar</title>
+    <title>Tanlangan recordlar</title>
 </head>
 <body>
 <h1>{{record.talaba}} ma'lumotlari</h1>
     <hr>
     <p>Talaba: {{record.talaba}}</p>
     <p>Kitob: {{record.kitob}}</p>
-    <p>Admin: {{record.admin.sahifa}}</p>
+    <p>Admin: {{record.admin}}</p>
     <p>Olingan sana: {{record.olingan_sana}}</p>
-    <p>Qaytarish sana: {{record.qaytarish_sanasi}}</p>
-    <a href="/order">Ortga</a>
+    <p>Qaytarish sana: {{record.qaytatrish_sanasi}}</p>
+    <a href="/record/">
+        <button>Orqaga</button>
+    </a>
 </body>
 </html>

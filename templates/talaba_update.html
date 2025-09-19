@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Talaba</title>
+</head>
+<body>
+<div class="card">
+    <h1>{{talaba.ism}} ma'lumotlarini tahrirlash</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Saqlash</button>
+    </form>
+</div>
+</body>
+</html>
