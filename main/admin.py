@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import *
+from main.models import *
 from django.contrib.auth.models import Group, User
-
-from .views import talaba_view
+from django.contrib.admin import AdminSite
+from django.contrib.auth import get_user_model
 
 
 class TalabaAdmin(admin.ModelAdmin):

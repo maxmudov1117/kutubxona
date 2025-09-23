@@ -1,0 +1,32 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+{{ block.super }}
+
+<div class="row mt-4">
+  <!-- Foydalanuvchilar soni -->
+  <div class="col-md-3">
+    <div class="card bg-primary text-white shadow p-3 rounded-2xl">
+      <h4>👥 Foydalanuvchilar</h4>
+      <p class="h3">{{ users_count }}</p>
+    </div>
+  </div>
+
+  <!-- Kitoblar soni -->
+  <div class="col-md-3">
+    <div class="card bg-success text-white shadow p-3 rounded-2xl">
+      <h4>📚 Kitoblar</h4>
+      <p class="h3">{{ books_count }}</p>
+    </div>
+  </div>
+
+  <!-- Talabalar soni -->
+  <div class="col-md-3">
+    <div class="card bg-warning text-white shadow p-3 rounded-2xl">
+      <h4>🎓 Talabalar</h4>
+      <p class="h3">{{ students_count }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
